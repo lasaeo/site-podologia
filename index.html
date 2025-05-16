@@ -126,7 +126,7 @@
     <section id="sobre">
         <h2>Sobre nós</h2>
         <p>
-            Bem-vindo ao Podologia Morumbi. Excelência no atendimento, privacidade, biossegurança,
+            Bem-vindo ao Podologia Shopping portal Morumbi. Excelência no atendimento, privacidade, biossegurança,
             infraestrutura e conforto. Agimos sempre em prol da saúde dos pés.
             <br><br>
             Profissional com mais de 25 anos de experiência. Atendimento especializado a pés diabéticos por enfermeira qualificada.
@@ -136,8 +136,9 @@
     <section id="servicos">
         <h2>Serviços</h2>
         <ul>
-            <li>Podologia preventiva</li>
+            <li>Podologia preventiva: Corte técnico de unhas ;Limpeza da região periungueal (ao redor da unha);Micose de unhas (onicomicose);Tratamento de calos e calosidades. </li>
             <li>Tratamento de unhas encravadas</li>
+            <li>Calos e calosidade</li>
             <li>Hidratação profunda dos pés</li>
             <li>Atendimento para pés diabéticos</li>
         </ul>
@@ -146,10 +147,15 @@
     <section id="agendamento">
         <h2>Agende sua consulta</h2>
         <form id="formAgendamento">
-            <input type="text" id="nome" placeholder="Seu nome" required />
-            <input type="text" id="servico" placeholder="Serviço desejado" required />
-            <input type="date" id="data" required />
-            <input type="time" id="horario" required />
+           <select id="servico" required>
+    <option value="" disabled selected>Selecione o serviço</option>
+    <option value="Podologia tradicional">Podologia tradicional</option>
+    <option value="Calo e Calosidade">Calo e Calosidade</option>
+    <option value="Laserterapia">Laserterapia</option>
+    <option value="Massagem relaxante">Massagem relaxante</option>
+    <option value="Unha infeccionada">Unha infeccionada</option>
+</select>
+
             <button type="submit">Agendar via WhatsApp</button>
         </form>
     </section>
