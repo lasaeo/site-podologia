@@ -107,7 +107,7 @@ section {
   color: #145214; /* verde escuro */
 }
 
-/* Garantir que títulos, itens e textos importantes também fiquem verdes e em negrito */
+/* Títulos em verde escuro, negrito e com espaçamento */
 #servicos h2,
 #servicos h3,
 #servicos h4,
@@ -115,6 +115,15 @@ section {
 #servicos li {
   color: #145214;
   font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.3em;
+}
+
+/* Parágrafos com espaçamento abaixo e texto normal */
+#servicos p {
+  margin-bottom: 1.2em;
+  color: #000;
+  font-weight: normal;
 }
 
 /* Formulário */
@@ -181,3 +190,4 @@ footer {
     padding: 80px 15px 30px;
   }
 }
+
