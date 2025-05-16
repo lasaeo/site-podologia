@@ -1,216 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Podologia Saúde dos Pés</title>
-    <link rel="stylesheet" href="estilo.css" />
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Podologia Shopping Portal</title>
+  <link rel="stylesheet" href="estilo.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #2e7d32;
-            color: white;
-            padding: 15px 0;
-            z-index: 1000;
-        }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #2e7d32;
+      color: white;
+      padding: 15px 0;
+      z-index: 1000;
+    }
 
-        nav {
-            max-width: 1000px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+    nav {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-            margin: 0;
-            padding: 0;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        section {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-        .banner {
-            margin-top: 80px;
-            background-image: url('podologia_saude_pes1.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
+    .banner {
+      margin-top: 80px;
+      background-image: url('podologia_saude_pes1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
 
-        .banner h2 {
-            font-size: 2.5em;
-        }
+    .banner h2 {
+      font-size: 2.5em;
+    }
 
-        .banner a {
-            background: white;
-            color: #2e7d32;
-            padding: 12px 25px;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
-        }
+    .banner a {
+      background: white;
+      color: #2e7d32;
+      padding: 12px 25px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+    }
 
-        form {
-            background: #f9f9f9;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
+    form {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
 
-        form input, form select, form button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
+    form input, form select, form button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
 
-        form button {
-            background-color: #2e7d32;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-        }
+    form button {
+      background-color: #2e7d32;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
 
-        footer {
-            background-color: #2e7d32;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+    footer {
+      background-color: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
 
-        .servico-item {
-            margin-bottom: 20px;
-        }
-
-        .servico-item h3 {
-            margin-bottom: 5px;
-            color: #2e7d32;
-        }
-    </style>
+    ul.descricao-servicos {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>Podologia Saúde dos Pés</h1>
-            <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#agendamento">Agendamento</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <h1>Podologia Shopping Portal</h1>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#agendamento">Agendamento</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section class="banner">
-        <h2>Cuide da saúde dos seus pés</h2>
-        <p>Mais de 25 anos de experiência em podologia</p>
-        <a href="#agendamento">Agende agora</a>
-    </section>
+  <section class="banner">
+    <h2>Cuide da saúde dos seus pés</h2>
+    <p>Mais de 25 anos de experiência em podologia</p>
+    <a href="#agendamento">Agende agora</a>
+  </section>
 
-    <section id="sobre">
-        <h2>Sobre nós</h2>
-        <p>
-            Bem-vindo ao Podologia Morumbi. Excelência no atendimento, privacidade, biossegurança,
-            infraestrutura e conforto. Agimos sempre em prol da saúde dos pés.
-            <br><br>
-            Profissional com mais de 25 anos de experiência. Atendimento especializado a pés diabéticos por enfermeira qualificada.
-        </p>
-    </section>
+  <section id="sobre">
+    <h2>Sobre nós</h2>
+    <p>
+      Bem-vindo à Podologia Shopping Portal. Excelência no atendimento, privacidade, biossegurança,
+      infraestrutura e conforto. Agimos sempre em prol da saúde dos pés.
+      <br><br>
+      Profissional com mais de 25 anos de experiência e formação em enfermagem. Atendimento especializado a pés diabéticos.
+    </p>
+  </section>
 
-    <section id="servicos">
-        <h2>Serviços</h2>
+  <section id="servicos">
+    <h2>Serviços</h2>
+    <ul class="descricao-servicos">
+      <li><strong>Podologia preventiva:</strong> Corte técnico de unhas, limpeza da região periungueal, micose de unhas (onicomicose), tratamento de calos e calosidades.</li>
+      <li><strong>Tratamento de unhas encravadas</strong></li>
+      <li><strong>Calos e calosidade</strong></li>
+      <li><strong>Hidratação profunda dos pés</strong></li>
+      <li><strong>Atendimento para pés diabéticos</strong></li>
+    </ul>
+  </section>
 
-        <div class="servico-item">
-            <h3>Podologia preventiva</h3>
-            <p>Corte técnico de unhas; limpeza da região periungueal (ao redor da unha); micose de unhas (onicomicose); tratamento de calos e calosidades.</p>
-        </div>
+  <section id="agendamento">
+    <h2>Agende sua consulta</h2>
+    <form id="formAgendamento">
+      <input type="text" id="nome" placeholder="Seu nome" required />
+      <select id="servico" required>
+        <option value="">Selecione o serviço</option>
+        <option value="Podologia preventiva">Podologia preventiva</option>
+        <option value="Tratamento de unhas encravadas">Tratamento de unhas encravadas</option>
+        <option value="Calos e calosidade">Calos e calosidade</option>
+        <option value="Hidratação profunda dos pés">Hidratação profunda dos pés</option>
+        <option value="Atendimento para pés diabéticos">Atendimento para pés diabéticos</option>
+      </select>
+      <input type="date" id="data" required />
+      <input type="time" id="horario" required />
+      <button type="submit">Agendar via WhatsApp</button>
+    </form>
+  </section>
 
-        <div class="servico-item">
-            <h3>Tratamento de unhas encravadas</h3>
-            <p>Correção e alívio imediato da dor causada por unhas encravadas.</p>
-        </div>
+  <footer>
+    <p>© 2025 Podologia Shopping Portal - Todos os direitos reservados</p>
+    <p>WhatsApp: (11) 95836-8306</p>
+  </footer>
 
-        <div class="servico-item">
-            <h3>Calos e calosidade</h3>
-            <p>Remoção e tratamento de calos e calosidades que causam desconforto.</p>
-        </div>
+  <script>
+    document.getElementById("formAgendamento").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-        <div class="servico-item">
-            <h3>Hidratação profunda dos pés</h3>
-            <p>Tratamento intensivo para ressecamento e rachaduras, deixando os pés mais saudáveis.</p>
-        </div>
+      const nome = document.getElementById("nome").value;
+      const servico = document.getElementById("servico").value;
+      const data = document.getElementById("data").value;
+      const horario = document.getElementById("horario").value;
 
-        <div class="servico-item">
-            <h3>Atendimento para pés diabéticos</h3>
-            <p>Cuidados especializados e seguros por profissional de saúde capacitada para prevenir complicações nos pés de pacientes diabéticos.</p>
-        </div>
-    </section>
+      const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para ${servico} no dia ${data} às ${horario}.`;
+      const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
 
-    <section id="agendamento">
-        <h2>Agende sua consulta</h2>
-        <form id="formAgendamento">
-            <input type="text" id="nome" placeholder="Seu nome" required />
-
-            <select id="servico" required>
-                <option value="" disabled selected>Selecione o serviço</option>
-                <option value="Podologia preventiva">Podologia preventiva</option>
-                <option value="Tratamento de unhas encravadas">Tratamento de unhas encravadas</option>
-                <option value="Calos e calosidade">Calos e calosidade</option>
-                <option value="Hidratação profunda dos pés">Hidratação profunda dos pés</option>
-                <option value="Atendimento para pés diabéticos">Atendimento para pés diabéticos</option>
-            </select>
-
-            <input type="date" id="data" required />
-            <input type="time" id="horario" required />
-            <button type="submit">Agendar via WhatsApp</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>© 2025 Podologia Saúde dos Pés - Todos os direitos reservados</p>
-        <p>WhatsApp: (11) 95836-8306</p>
-    </footer>
-
-    <script>
-        document.getElementById("formAgendamento").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const nome = document.getElementById("nome").value;
-            const servico = document.getElementById("servico").value;
-            const data = document.getElementById("data").value;
-            const horario = document.getElementById("horario").value;
-
-            const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para ${servico} no dia ${data} às ${horario}.`;
-            const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
-
-            window.open(url, "_blank");
-        });
-    </script>
+      window.open(url, "_blank");
+    });
+  </script>
 </body>
 </html>
-
