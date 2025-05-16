@@ -3,35 +3,151 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Podologia saúde dos pés</title>
+    <title>Podologia Saúde dos Pés</title>
     <link rel="stylesheet" href="estilo.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2e7d32;
+            color: white;
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .banner {
+            margin-top: 80px;
+            background-image: url('podologia_saude_pes1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .banner h2 {
+            font-size: 2.5em;
+        }
+
+        .banner a {
+            background: white;
+            color: #2e7d32;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        form {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        form input, form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            background-color: #2e7d32;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Podologia saúde dos pés</h1>
-        <p>Cuidando da saúde dos seus pés!</p>
+        <nav>
+            <h1>Podologia Saúde dos Pés</h1>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#agendamento">Agendamento</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section>
-        <h2>Sobre nós</h2>
-        <img src="podologia_saude_pes1.jpg" alt="Foto da clínica" style="max-width: 100%; height: auto;" />
-        <p>Bem-vindo ao podologia Morumbi. "Excelência no atendimento, privacidade, biossegurança, infraestrutura e conforto, agindo sempre em prol da saúde dos pés. Podóloga com mais de 25 anos de experiência", Enfermeira atendimento pés diabéticos.</p>
+    <section class="banner">
+        <h2>Cuide da saúde dos seus pés</h2>
+        <p>Mais de 25 anos de experiência em podologia</p>
+        <a href="#agendamento">Agende agora</a>
     </section>
 
-    <section>
-        <h2>Agende sua consulta</h2>
-        <form id="form-agendamento">
-            <input type="text" id="nome" placeholder="Seu nome" required />
-            
-            <select id="servico" required>
-                <option value="" disabled selected>Selecione o serviço</option>
-                <option>Podologia tradicional</option>
-                <option>Calo e Calosidade</option>
-                <option>Laserterapia</option>
-                <option>Massagem relaxante</option>
-                <option>Unha infeccionada</option>
-            </select>
+    <section id="sobre">
+        <h2>Sobre nós</h2>
+        <p>
+            Bem-vindo ao Podologia Morumbi. Excelência no atendimento, privacidade, biossegurança,
+            infraestrutura e conforto. Agimos sempre em prol da saúde dos pés.
+            <br><br>
+            Profissional com mais de 25 anos de experiência. Atendimento especializado a pés diabéticos por enfermeira qualificada.
+        </p>
+    </section>
 
+    <section id="servicos">
+        <h2>Serviços</h2>
+        <ul>
+            <li>Podologia preventiva</li>
+            <li>Tratamento de unhas encravadas</li>
+            <li>Hidratação profunda dos pés</li>
+            <li>Atendimento para pés diabéticos</li>
+        </ul>
+    </section>
+
+    <section id="agendamento">
+        <h2>Agende sua consulta</h2>
+        <form id="formAgendamento">
+            <input type="text" id="nome" placeholder="Seu nome" required />
+            <input type="text" id="servico" placeholder="Serviço desejado" required />
             <input type="date" id="data" required />
             <input type="time" id="horario" required />
             <button type="submit">Agendar via WhatsApp</button>
@@ -39,10 +155,25 @@
     </section>
 
     <footer>
-        <p>© 2025 Podologia saúde dos pés - Todos os direitos reservados</p>
+        <p>© 2025 Podologia Saúde dos Pés - Todos os direitos reservados</p>
+        <p>WhatsApp: (11) 95836-8306</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("formAgendamento").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const servico = document.getElementById("servico").value;
+            const data = document.getElementById("data").value;
+            const horario = document.getElementById("horario").value;
+
+            const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para ${servico} no dia ${data} às ${horario}.`;
+            const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
+
+            window.open(url, "_blank");
+        });
+    </script>
 </body>
 </html>
 
