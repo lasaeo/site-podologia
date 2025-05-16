@@ -109,10 +109,9 @@
       padding-left: 20px;
     }
 
-    /* CSS para deixar a seção serviços verde escuro, negrito e destacado */
     #servicos {
-      color: #145214; /* verde escuro */
-      background-color: #f0f7f0; /* fundo clarinho para destacar */
+      color: #145214;
+      background-color: #f0f7f0;
       padding: 25px 30px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
@@ -133,6 +132,28 @@
     #servicos li {
       margin-bottom: 12px;
       line-height: 1.5;
+    }
+
+    #localizacao {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #f0f7f0;
+      border-radius: 10px;
+      margin: 40px auto;
+      max-width: 1000px;
+    }
+
+    #localizacao h2 {
+      color: #145214;
+      margin-bottom: 20px;
+    }
+
+    #localizacao iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -191,6 +212,16 @@
       <input type="time" id="horario" required />
       <button type="submit">Agendar via WhatsApp</button>
     </form>
+  </section>
+
+  <section id="localizacao">
+    <h2>Onde estamos</h2>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.9062290426777!2d-46.76571102467029!3d-23.57460387878603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef9621050f7e1%3A0xb5a2a1652829fc6c!2sShopping%20Portal%20do%20Morumbi!5e0!3m2!1spt-BR!2sbr!4v1715877240577!5m2!1spt-BR!2sbr" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </section>
 
   <footer>
