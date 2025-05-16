@@ -15,16 +15,31 @@
     <section>
         <h2>Sobre nós</h2>
         <img src="podologia_saude_pes1.jpg" alt="Foto da clínica" style="max-width: 100%; height: auto;" />
-        <p>Bem-vindo ao podologia Morumbi."Excelência no atendimento , privacidade, biossegurança, infraestrutura e conforto, agindo sempre em prol da saúde dos pés. Podóloga com mais de 25 anos de experiência", Enfermeira atendimento Pes diabeticos".</p>
+        <p>
+            Bem-vindo ao podologia Morumbi. "Excelência no atendimento, privacidade, biossegurança,
+            infraestrutura e conforto, agindo sempre em prol da saúde dos pés. Podóloga com mais de
+            25 anos de experiência", Enfermeira especializada no atendimento a pés diabéticos.
+        </p>
     </section>
 
-    <section>
-        <h2>Agende sua consulta</h2>
-        <form>
-            <input type="text" placeholder="Seu nome" required />
-            <input type="email" placeholder="Seu email" required />
-            <input type="date" required />
-            <button type="submit">Agendar</button>
+    <section id="agendamento" style="padding: 40px; background-color: #f9f9f9; font-family: Arial, sans-serif;">
+        <h2 style="text-align: center; font-size: 2em; margin-bottom: 20px;">Agende sua consulta</h2>
+        <form id="formAgendamento" style="max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required style="width: 100%; padding: 10px; margin-bottom: 15px;" placeholder="Seu nome">
+
+            <label for="servico">Serviço de Podologia:</label>
+            <input type="text" id="servico" required style="width: 100%; padding: 10px; margin-bottom: 15px;" placeholder="Ex: Limpeza, Unha encravada...">
+
+            <label for="data">Data:</label>
+            <input type="date" id="data" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+
+            <label for="horario">Horário:</label>
+            <input type="time" id="horario" required style="width: 100%; padding: 10px; margin-bottom: 20px;">
+
+            <button type="submit" style="width: 100%; padding: 12px; background-color: #27ae60; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+                Agendar via WhatsApp
+            </button>
         </form>
     </section>
 
@@ -32,6 +47,5 @@
         <p>© 2025 Podologia saúde dos pés - Todos os direitos reservados</p>
     </footer>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        document.getElementById("formAgendamento").addEventListener("submit", function
