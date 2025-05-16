@@ -81,7 +81,7 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
 
-        form input, form button {
+        form input, form select, form button {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -102,6 +102,15 @@
             color: white;
             text-align: center;
             padding: 20px;
+        }
+
+        .servico-item {
+            margin-bottom: 20px;
+        }
+
+        .servico-item h3 {
+            margin-bottom: 5px;
+            color: #2e7d32;
         }
     </style>
 </head>
@@ -126,7 +135,7 @@
     <section id="sobre">
         <h2>Sobre nós</h2>
         <p>
-            Bem-vindo ao Podologia Shopping portal Morumbi. Excelência no atendimento, privacidade, biossegurança,
+            Bem-vindo ao Podologia Morumbi. Excelência no atendimento, privacidade, biossegurança,
             infraestrutura e conforto. Agimos sempre em prol da saúde dos pés.
             <br><br>
             Profissional com mais de 25 anos de experiência. Atendimento especializado a pés diabéticos por enfermeira qualificada.
@@ -135,27 +144,49 @@
 
     <section id="servicos">
         <h2>Serviços</h2>
-        <ul>
-            <li>Podologia preventiva: Corte técnico de unhas ;Limpeza da região periungueal (ao redor da unha);Micose de unhas (onicomicose);Tratamento de calos e calosidades. </li>
-            <li>Tratamento de unhas encravadas</li>
-            <li>Calos e calosidade</li>
-            <li>Hidratação profunda dos pés</li>
-            <li>Atendimento para pés diabéticos</li>
-        </ul>
+
+        <div class="servico-item">
+            <h3>Podologia preventiva</h3>
+            <p>Corte técnico de unhas; limpeza da região periungueal (ao redor da unha); micose de unhas (onicomicose); tratamento de calos e calosidades.</p>
+        </div>
+
+        <div class="servico-item">
+            <h3>Tratamento de unhas encravadas</h3>
+            <p>Correção e alívio imediato da dor causada por unhas encravadas.</p>
+        </div>
+
+        <div class="servico-item">
+            <h3>Calos e calosidade</h3>
+            <p>Remoção e tratamento de calos e calosidades que causam desconforto.</p>
+        </div>
+
+        <div class="servico-item">
+            <h3>Hidratação profunda dos pés</h3>
+            <p>Tratamento intensivo para ressecamento e rachaduras, deixando os pés mais saudáveis.</p>
+        </div>
+
+        <div class="servico-item">
+            <h3>Atendimento para pés diabéticos</h3>
+            <p>Cuidados especializados e seguros por profissional de saúde capacitada para prevenir complicações nos pés de pacientes diabéticos.</p>
+        </div>
     </section>
 
     <section id="agendamento">
         <h2>Agende sua consulta</h2>
         <form id="formAgendamento">
-           <select id="servico" required>
-    <option value="" disabled selected>Selecione o serviço</option>
-    <option value="Podologia tradicional">Podologia tradicional</option>
-    <option value="Calo e Calosidade">Calo e Calosidade</option>
-    <option value="Laserterapia">Laserterapia</option>
-    <option value="Massagem relaxante">Massagem relaxante</option>
-    <option value="Unha infeccionada">Unha infeccionada</option>
-</select>
+            <input type="text" id="nome" placeholder="Seu nome" required />
 
+            <select id="servico" required>
+                <option value="" disabled selected>Selecione o serviço</option>
+                <option value="Podologia preventiva">Podologia preventiva</option>
+                <option value="Tratamento de unhas encravadas">Tratamento de unhas encravadas</option>
+                <option value="Calos e calosidade">Calos e calosidade</option>
+                <option value="Hidratação profunda dos pés">Hidratação profunda dos pés</option>
+                <option value="Atendimento para pés diabéticos">Atendimento para pés diabéticos</option>
+            </select>
+
+            <input type="date" id="data" required />
+            <input type="time" id="horario" required />
             <button type="submit">Agendar via WhatsApp</button>
         </form>
     </section>
