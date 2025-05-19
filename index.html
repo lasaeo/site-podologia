@@ -5,12 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Podologia Shopping Portal</title>
   <link rel="stylesheet" href="style.css" />
-  
+
   <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    /* Estilos extras rápidos se precisar aqui dentro */
+    .sobre-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      justify-content: space-between;
+    }
+
+    .sobre-texto {
+      flex: 1 1 300px;
+    }
+
+    .sobre-imagem {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .sobre-imagem img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -31,14 +53,22 @@
     <a href="#agendamento">Agende agora</a>
   </section>
 
+  <!-- NOVA SEÇÃO SOBRE NÓS -->
   <section id="sobre" data-aos="fade-up">
-    <h2>Sobre nós</h2>
-    <p>
-      Bem-vindo à Podologia Shopping Portal. Excelência no atendimento, privacidade, biossegurança,
-      infraestrutura e conforto. Agimos sempre em prol da saúde dos pés.
-      <br><br>
-      Profissional com mais de 25 anos de experiência e formação em enfermagem. Atendimento especializado a pés diabéticos.
-    </p>
+    <div class="sobre-container">
+      <div class="sobre-texto">
+        <h2>Sobre nós</h2>
+        <p>
+          Bem-vindo à Podologia Shopping Portal. Excelência no atendimento, privacidade, biossegurança,
+          infraestrutura e conforto. Agimos sempre em prol da saúde dos pés.
+          <br><br>
+          Profissional com mais de 25 anos de experiência e formação em enfermagem. Atendimento especializado a pés diabéticos.
+        </p>
+      </div>
+      <div class="sobre-imagem">
+        <img src="pexels-photo-1076584.webp" alt="Cuidados com os pés">
+      </div>
+    </div>
   </section>
 
   <section id="servicos" class="texto-verde" data-aos="fade-left">
@@ -85,7 +115,7 @@
     <p>WhatsApp: (11) 95836-8306</p>
   </footer>
 
-  <!-- WhatsApp Form Script -->
+  <!-- Agendamento via WhatsApp -->
   <script>
     document.getElementById("formAgendamento").addEventListener("submit", function(event) {
       event.preventDefault();
@@ -106,11 +136,12 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({
-      duration: 1000, // duração da animação
-      once: true      // anima apenas uma vez
+      duration: 1000,
+      once: true
     });
   </script>
 </body>
 </html>
+
 
 
