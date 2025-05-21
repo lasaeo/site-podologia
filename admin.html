@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Painel Admin - Podologia Shopping Portal</title>
   <style>
     body {
@@ -76,8 +76,8 @@
   <main>
     <div class="login" id="loginDiv">
       <h2>Login</h2>
-      <input type="email" id="email" placeholder="Email"><br>
-      <input type="password" id="password" placeholder="Senha"><br>
+      <input type="email" id="email" placeholder="Email" /><br />
+      <input type="password" id="password" placeholder="Senha" /><br />
       <button onclick="login()">Entrar</button>
     </div>
 
@@ -91,13 +91,12 @@
   </main>
 
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
 
   <script>
-    // Config Firebase (use a sua mesma do site)
+    // Config Firebase (use sua config)
     const firebaseConfig = {
       apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
       authDomain: "agendapodologia-e8d61.firebaseapp.com",
@@ -146,7 +145,7 @@
       }
     });
 
-    // Carregar dados dos agendamentos
+    // Função corrigida para carregar agendamentos
     function carregarAgendamentos() {
       const lista = document.getElementById('agendamentos');
       lista.innerHTML = 'Carregando...';
@@ -161,12 +160,12 @@
           let html = '';
           snapshot.forEach(doc => {
             const data = doc.data();
-            const dataHora = data.data.toDate().toLocaleString();
             html += `
               <div class="agendamento">
                 <strong>Nome:</strong> ${data.nome}<br>
-                <strong>Serviço:</strong> ${data.servico}<br>
-                <strong>Data do registro:</strong> ${dataHora}<br>
+                <strong>Telefone:</strong> ${data.telefone}<br>
+                <strong>Data do agendamento:</strong> ${data.data}<br>
+                <strong>Horário do agendamento:</strong> ${data.horario}<br>
               </div>
             `;
           });
@@ -180,4 +179,5 @@
 
 </body>
 </html>
+
 
