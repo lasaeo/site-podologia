@@ -89,20 +89,19 @@
 
  <section id="agendamento" data-aos="fade-up">
   <h2>Agende sua consulta</h2>
-  <form id="formAgendamento">
-    <input type="text" id="nome" placeholder="Seu nome" required />
-    <select id="servico" required>
-      <option value="">Selecione o serviço</option>
-      <option value="Podologia preventiva">Podologia preventiva</option>
-      <option value="Tratamento de unha infeccionada">Tratamento de unha infeccionada</option>
-      <option value="Calos e calosidade">Calos e calosidade</option>
-      <option value="Laserterapia onicomicose(sessão)">Laserterapia onicomicose(sessão)</option>
-    </select>
-    <button type="submit">
-      <img src="https://img.icons8.com/ios-filled/20/ffffff/whatsapp.png" alt="WhatsApp" style="vertical-align: middle; margin-right: 8px;" />
-      Agendar via WhatsApp
-    </button>
-  </form>
+ <form id="formAgendamento">
+  <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+  <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+  <!-- Campos novos -->
+  <label for="data">Data do Agendamento:</label>
+  <input type="date" id="data" name="data" required>
+  
+  <label for="hora">Hora do Agendamento:</label>
+  <input type="time" id="hora" name="hora" required>
+
+  <button type="submit">Agendar</button>
+</form>
+
 </section>
 
 <script>
