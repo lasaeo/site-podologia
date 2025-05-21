@@ -87,39 +87,24 @@
     </ul>
   </section>
 
-  <section id="agendamento" data-aos="fade-up">
-    <h2>Agende sua consulta</h2>
-    <form id="formAgendamento">
-      <input type="text" id="nome" placeholder="Seu nome" required />
-      <select id="servico" required>
-        <option value="">Selecione o serviço</option>
-        <option value="Podologia preventiva">Podologia preventiva</option>
-        <option value="Tratamento de unha infeccionada">Tratamento de unha infeccionada</option>
-        <option value="Calos e calosidade">Calos e calosidade</option>
-        <option value="Laserterapia onicomicose(sessão)">Laserterapia onicomicose(sessão)</option>
-      </select>
-    
-      <button type="submit">Agendar via WhatsApp</button>
-    </form>
-  </section>
+ <section id="agendamento" data-aos="fade-up">
+  <h2>Agende sua consulta</h2>
+  <form id="formAgendamento">
+    <input type="text" id="nome" placeholder="Seu nome" required />
+    <select id="servico" required>
+      <option value="">Selecione o serviço</option>
+      <option value="Podologia preventiva">Podologia preventiva</option>
+      <option value="Tratamento de unha infeccionada">Tratamento de unha infeccionada</option>
+      <option value="Calos e calosidade">Calos e calosidade</option>
+      <option value="Laserterapia onicomicose(sessão)">Laserterapia onicomicose(sessão)</option>
+    </select>
+    <button type="submit">
+      <img src="https://img.icons8.com/ios-filled/20/ffffff/whatsapp.png" alt="WhatsApp" style="vertical-align: middle; margin-right: 8px;" />
+      Agendar via WhatsApp
+    </button>
+  </form>
+</section>
 
-  <section id="localizacao" data-aos="zoom-in">
-    <h2>Localização</h2>
-    <p>Estamos localizados no Shopping Portal do Morumbi, em São Paulo.</p>
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.680543253664!2d-46.74307242366907!3d-23.614763578763288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57d109899ca9%3A0xa0dbbfe3aef01ee3!2sPodologia%20shopping%20Portal!5e0!3m2!1spt-BR!2sbr!4v1715882565484!5m2!1spt-BR!2sbr" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </section>
-
-  <footer>
-    <p>© 2025 Podologia Shopping Portal - Todos os direitos reservados</p>
-    <p>WhatsApp: (11) 95836-8306</p>
-  </footer>
-
-  <!-- Agendamento via WhatsApp -->
 <script>
   document.getElementById("formAgendamento").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -133,6 +118,7 @@
     window.open(url, "_blank");
   });
 </script>
+
 
 
   <!-- AOS JS -->
