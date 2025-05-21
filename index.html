@@ -120,21 +120,20 @@
   </footer>
 
   <!-- Agendamento via WhatsApp -->
-  <script>
-    document.getElementById("formAgendamento").addEventListener("submit", function(event) {
-      event.preventDefault();
+<script>
+  document.getElementById("formAgendamento").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-      const nome = document.getElementById("nome").value;
-      const servico = document.getElementById("servico").value;
-      const data = document.getElementById("data").value;
-      const horario = document.getElementById("horario").value;
+    const nome = document.getElementById("nome").value;
+    const servico = document.getElementById("servico").value;
 
-      const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para ${servico} no dia ${data} às ${horario}.`;
-      const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
+    const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para o serviço de ${servico}.`;
+    const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
 
-      window.open(url, "_blank");
-    });
-  </script>
+    window.open(url, "_blank");
+  });
+</script>
+
 
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
