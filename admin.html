@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Agendamentos Podologia</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      padding: 20px;
+    }
+    #loginForm, #dashboard {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    #dashboard {
+      display: none;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #2e7d32;
+      padding: 10px;
+      text-align: left;
+      color: #145214;
+    }
+    th {
+      background-color: #a5d6a7;
+    }
+    button {
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #1b4d21;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginForm">
+    <h2>Login Admin</h2>
+    <input type="email" id="email" placeholder="Email" required style="width:100%; padding:10px; margin-bottom:10px;"/>
+    <input type="password" id="password" placeholder="Senha" required style="width:100%; padding:10px; margin-bottom:10px;"/>
+    <button id="loginBtn">Entrar</button>
+    <p class="error" id="errorMsg"></p>
+  </div>
+
+  <div id="dashboard">
+    <h2>Agendamentos</h2>
+    <button id="logoutBtn">Sair</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Serviço</th>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Registro</th>
+        </tr>
+      </thead>
+      <tbody id="agendamentoTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
+      authDomain: "agendapodologia-e8d61.firebaseapp.com",
+      projectId: "agendapodologia-e8d61",
+      storageBucket: "agendapodologia-e8d61.appspot.com",
+      messagingSenderId: "1017209364452",
+      appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
+    };
+
+    // Inicializa Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    const loginForm = document.getElementById("loginForm");
+    const dashboard = document.getElementById("dashboard");
+    const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const errorMsg = document.getElementById("errorMsg");
+    const agendamentoTableBody = document.getElementById("agendamentoTableBody");
+
+    // Login
+    loginBtn.addEventListener("click", () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      errorMsg.textContent = "";
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          loginForm.style.display = "none";
+          dashboard.style.display = "block";
+          carregarAgendamentos();
+        })
+        .catch(error => {
+          errorMsg.textContent = "Erro no login: " + error.message;
+        });
+    });
+
+    // Logout
+    logoutBtn.addEventListener("click", () => {
+      auth.signOut().then(() => {
+        dashboard.style.display = "none";
+        loginForm.style.display = "block";
+        agendamentoTableBody.innerHTML = "";
+        errorMsg.textContent = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+      });
+    });
+
+    // Mantém sessão ativa ou redireciona para login
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        loginForm.style.display = "none";
+        dashboard.style.display = "block";
+        carregarAgendamentos();
+      } else {
+        dashboard.style.display = "none";
+        loginForm.style.display = "block";
+        agendamentoTableBody.innerHTML = "";
+      }
+    });
+
+    // Função para carregar agendamentos
+    function carregarAgendamentos() {
+      agendamentoTableBody.innerHTML = "Carregando...";
+
+      db.collection("agendamentos")
+        .orderBy("criadoEm", "desc")
+        .get()
+        .then(snapshot => {
+          if(snapshot.empty) {
+            agendamentoTableBody.innerHTML = "<tr><td colspan='5'>Nenhum agendamento encontrado.</td></tr>";
+            return;
+          }
+
+          agendamentoTableBody.innerHTML = "";
+
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            const criadoEm = data.criadoEm?.toDate().toLocaleString() || "";
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${data.nome}</td>
+              <td>${data.servico}</td>
+              <td>${data.data}</td>
+              <td>${data.hora}</td>
+              <td>${criadoEm}</td>
+            `;
+            agendamentoTableBody.appendChild(tr);
+          });
+        })
+        .catch(error => {
+          agendamentoTableBody.innerHTML = `<tr><td colspan="5">Erro ao carregar: ${error.message}</td></tr>`;
+        });
+    }
+  </script>
+</body>
+</html>
