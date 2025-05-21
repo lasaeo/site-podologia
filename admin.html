@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin - Agendamentos Podologia</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel Admin - Podologia Shopping Portal</title>
   <style>
     body {
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
     }
-    #loginForm, #dashboard {
-      max-width: 600px;
-      margin: auto;
+
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto;
       background: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
-    #dashboard {
-      display: none;
+
+    h2 {
+      text-align: center;
+      color: #2e7d32;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+
+    .agendamento {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
     }
-    th, td {
-      border: 1px solid #2e7d32;
+
+    .login, .logout {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    input {
       padding: 10px;
-      text-align: left;
-      color: #145214;
+      width: 90%;
+      max-width: 300px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
-    th {
-      background-color: #a5d6a7;
-    }
+
     button {
       background-color: #2e7d32;
       color: white;
       border: none;
       padding: 10px 20px;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
-      margin-top: 10px;
-      font-weight: bold;
+      margin: 5px;
     }
+
     button:hover {
       background-color: #1b4d21;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div id="loginForm">
-    <h2>Login Admin</h2>
-    <input type="email" id="email" placeholder="Email" required style="width:100%; padding:10px; margin-bottom:10px;"/>
-    <input type="password" id="password" placeholder="Senha" required style="width:100%; padding:10px; margin-bottom:10px;"/>
-    <button id="loginBtn">Entrar</button>
-    <p class="error" id="errorMsg"></p>
-  </div>
 
-  <div id="dashboard">
-    <h2>Agendamentos</h2>
-    <button id="logoutBtn">Sair</button>
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Serviço</th>
-          <th>Data</th>
-          <th>Hora</th>
-          <th>Registro</th>
-        </tr>
-      </thead>
-      <tbody id="agendamentoTableBody"></tbody>
-    </table>
-  </div>
+  <header>
+    <h1>Painel de Agendamentos</h1>
+  </header>
 
-  <!-- Firebase SDKs -->
+  <main>
+    <div class="login" id="loginDiv">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="Email"><br>
+      <input type="password" id="password" placeholder="Senha"><br>
+      <button onclick="login()">Entrar</button>
+    </div>
+
+    <div id="content" style="display:none;">
+      <div class="logout">
+        <button onclick="logout()">Sair</button>
+      </div>
+      <h2>Lista de Agendamentos</h2>
+      <div id="agendamentos"></div>
+    </div>
+  </main>
+
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
 
   <script>
+    // Config Firebase (use a sua mesma do site)
     const firebaseConfig = {
       apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
       authDomain: "agendapodologia-e8d61.firebaseapp.com",
@@ -94,95 +106,77 @@
       appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
     };
 
-    // Inicializa Firebase
     const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
     const auth = firebase.auth();
-
-    const loginForm = document.getElementById("loginForm");
-    const dashboard = document.getElementById("dashboard");
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const errorMsg = document.getElementById("errorMsg");
-    const agendamentoTableBody = document.getElementById("agendamentoTableBody");
+    const db = firebase.firestore();
 
     // Login
-    loginBtn.addEventListener("click", () => {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      errorMsg.textContent = "";
-
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-          loginForm.style.display = "none";
-          dashboard.style.display = "block";
+          document.getElementById('loginDiv').style.display = 'none';
+          document.getElementById('content').style.display = 'block';
           carregarAgendamentos();
         })
         .catch(error => {
-          errorMsg.textContent = "Erro no login: " + error.message;
+          alert('Erro no login: ' + error.message);
         });
-    });
+    }
 
     // Logout
-    logoutBtn.addEventListener("click", () => {
+    function logout() {
       auth.signOut().then(() => {
-        dashboard.style.display = "none";
-        loginForm.style.display = "block";
-        agendamentoTableBody.innerHTML = "";
-        errorMsg.textContent = "";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
+        document.getElementById('loginDiv').style.display = 'block';
+        document.getElementById('content').style.display = 'none';
       });
-    });
+    }
 
-    // Mantém sessão ativa ou redireciona para login
+    // Verificar estado da autenticação
     auth.onAuthStateChanged(user => {
-      if(user) {
-        loginForm.style.display = "none";
-        dashboard.style.display = "block";
+      if (user) {
+        document.getElementById('loginDiv').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
         carregarAgendamentos();
       } else {
-        dashboard.style.display = "none";
-        loginForm.style.display = "block";
-        agendamentoTableBody.innerHTML = "";
+        document.getElementById('loginDiv').style.display = 'block';
+        document.getElementById('content').style.display = 'none';
       }
     });
 
-    // Função para carregar agendamentos
+    // Carregar dados dos agendamentos
     function carregarAgendamentos() {
-      agendamentoTableBody.innerHTML = "Carregando...";
+      const lista = document.getElementById('agendamentos');
+      lista.innerHTML = 'Carregando...';
 
-      db.collection("agendamentos")
-        .orderBy("criadoEm", "desc")
-        .get()
+      db.collection('agendamentos').orderBy('data', 'desc').get()
         .then(snapshot => {
-          if(snapshot.empty) {
-            agendamentoTableBody.innerHTML = "<tr><td colspan='5'>Nenhum agendamento encontrado.</td></tr>";
+          if (snapshot.empty) {
+            lista.innerHTML = 'Nenhum agendamento encontrado.';
             return;
           }
 
-          agendamentoTableBody.innerHTML = "";
-
+          let html = '';
           snapshot.forEach(doc => {
             const data = doc.data();
-            const criadoEm = data.criadoEm?.toDate().toLocaleString() || "";
-
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-              <td>${data.nome}</td>
-              <td>${data.servico}</td>
-              <td>${data.data}</td>
-              <td>${data.hora}</td>
-              <td>${criadoEm}</td>
+            const dataHora = data.data.toDate().toLocaleString();
+            html += `
+              <div class="agendamento">
+                <strong>Nome:</strong> ${data.nome}<br>
+                <strong>Serviço:</strong> ${data.servico}<br>
+                <strong>Data do registro:</strong> ${dataHora}<br>
+              </div>
             `;
-            agendamentoTableBody.appendChild(tr);
           });
+          lista.innerHTML = html;
         })
         .catch(error => {
-          agendamentoTableBody.innerHTML = `<tr><td colspan="5">Erro ao carregar: ${error.message}</td></tr>`;
+          lista.innerHTML = 'Erro ao carregar agendamentos: ' + error;
         });
     }
   </script>
+
 </body>
 </html>
+
