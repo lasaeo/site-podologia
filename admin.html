@@ -4,11 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Painel Admin - Podologia Shopping Portal</title>
+
   <!-- Link do CSS externo -->
   <link rel="stylesheet" href="admin.css">
+
 </head>
 
 <body>
+
   <header>
     <h1>Painel de Agendamentos</h1>
   </header>
@@ -85,7 +88,7 @@
       }
     });
 
-    // Função para carregar agendamentos com data formatada
+    // Função corrigida para carregar agendamentos
     function carregarAgendamentos() {
       const lista = document.getElementById('agendamentos');
       lista.innerHTML = 'Carregando...';
@@ -100,17 +103,16 @@
           let html = '';
           snapshot.forEach(doc => {
             const data = doc.data();
-            // Formatando timestamp para data legível
-            const dataAgendamento = data.data.toDate().toLocaleString('pt-BR', {
-              day: '2-digit', month: '2-digit', year: 'numeric',
-              hour: '2-digit', minute: '2-digit'
-            });
+            // Se data.data for timestamp, converta para string legível
+            let dataFormatada = data.data && data.data.toDate 
+                ? data.data.toDate().toLocaleDateString('pt-BR') 
+                : data.data;
 
             html += `
               <div class="agendamento">
                 <strong>Nome:</strong> ${data.nome}<br>
                 <strong>Telefone:</strong> ${data.telefone}<br>
-                <strong>Data do agendamento:</strong> ${dataAgendamento}<br>
+                <strong>Data do agendamento:</strong> ${dataFormatada}<br>
                 <strong>Horário do agendamento:</strong> ${data.horario}<br>
               </div>
             `;
@@ -122,6 +124,7 @@
         });
     }
   </script>
+
 </body>
 </html>
 
