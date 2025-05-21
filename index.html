@@ -119,18 +119,60 @@
   });
 </script>
 
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+<script>
+  // Configuração do Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
+    authDomain: "agendapodologia-e8d61.firebaseapp.com",
+    projectId: "agendapodologia-e8d61",
+    storageBucket: "agendapodologia-e8d61.appspot.com",
+    messagingSenderId: "1017209364452",
+    appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
+  };
 
+  // Inicializa Firebase
+  const app = firebase.initializeApp(firebaseConfig);
 
-  <!-- AOS JS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true
+  // Inicializa Firestore
+  const db = firebase.firestore();
+
+  // Exemplo: função para salvar agendamento no Firestore
+  const form = document.getElementById("formAgendamento");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nome = form.nome.value;
+    const servico = form.servico.value;
+
+    db.collection("agendamentos").add({
+      nome: nome,
+      servico: servico,
+      data: new Date()
+    })
+    .then(() => {
+      alert("Agendamento salvo no Firebase!");
+      // Você pode continuar abrindo o WhatsApp após salvar, se quiser:
+      const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para o serviço de ${servico}.`;
+      const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, "_blank");
+      form.reset();
+    })
+    .catch((error) => {
+      alert("Erro ao salvar agendamento: " + error);
     });
-  </script>
+  });
+</script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
 </body>
 </html>
-
-
-
