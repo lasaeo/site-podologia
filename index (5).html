@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Podologia Shopping Portal</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    .sobre-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      justify-content: space-between;
+    }
+
+    .sobre-texto {
+      flex: 1 1 300px;
+    }
+
+    .sobre-imagem {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .sobre-imagem img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Podologia Shopping Portal</h1>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#agendamento">Agendamento</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="banner" data-aos="fade-in">
+    <h2>Cuide da saúde dos seus pés</h2>
+    <p>Mais de 25 anos de experiência em podologia</p>
+    <a href="#agendamento">Agende agora</a>
+  </section>
+
+  <!-- NOVA SEÇÃO SOBRE NÓS -->
+<section id="sobre" data-aos="fade-up">
+  <div class="sobre-container">
+    <div class="sobre-imagem">
+      <img src="BASE_PNG.jpg" alt="Atendimento clínico em podologia">
+    </div>
+    <div class="sobre-texto">
+      <h2>Sobre nós</h2>
+      <p>
+        Na <strong>Podologia Shopping Portal</strong>, unimos experiência clínica com cuidado humano.
+        Nossa missão é cuidar da saúde dos seus pés com profissionalismo, conforto e atenção aos detalhes.
+      </p>
+      <ul class="diferenciais">
+        <li>✔ Mais de 25 anos de experiência</li>
+        <li>✔ Atendimento especializado para pés diabéticos</li>
+        <li>✔ Profissional com formação em enfermagem</li>
+        <li>✔ Ambientes seguros, limpos e acolhedores</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+  <section id="servicos" class="texto-verde" data-aos="fade-left">
+    <h2>Serviços</h2>
+    <ul class="descricao-servicos">
+      <li><strong>Podologia preventiva:</strong> Corte técnico de unhas, limpeza da região periungueal (retirada de excesso de pele no canto das unhas), micose de unhas (onicomicose), tratamento de calos e calosidades.</li>
+      <li><strong>Tratamento de unha infeccionada</strong></li>
+      <li><strong>Calo e calosidade</strong></li>
+      <li><strong>Laserterapia (onicomicose)</strong></li>
+      <li><strong>Atendimento para pés diabéticos</strong></li>
+    </ul>
+  </section>
+
+ <section id="agendamento" data-aos="fade-up">
+  <h2>Agende sua consulta</h2>
+ <form id="formAgendamento">
+  <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+  <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+  <!-- Campos novos -->
+  <label for="data">Data do Agendamento:</label>
+  <input type="date" id="data" name="data" required>
+  
+  <label for="hora">Hora do Agendamento:</label>
+  <input type="time" id="hora" name="hora" required>
+
+  <button type="submit">Agendar</button>
+</form>
+
+</section>
+
+<script>
+  document.getElementById("formAgendamento").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const servico = document.getElementById("servico").value;
+
+    const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para o serviço de ${servico}.`;
+    const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, "_blank");
+  });
+</script>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+<script>
+  // Configuração do Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
+    authDomain: "agendapodologia-e8d61.firebaseapp.com",
+    projectId: "agendapodologia-e8d61",
+    storageBucket: "agendapodologia-e8d61.appspot.com",
+    messagingSenderId: "1017209364452",
+    appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
+  };
+
+  // Inicializa Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+
+  // Inicializa Firestore
+  const db = firebase.firestore();
+
+  // Exemplo: função para salvar agendamento no Firestore
+  const form = document.getElementById("formAgendamento");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nome = form.nome.value;
+    const servico = form.servico.value;
+
+    db.collection("agendamentos").add({
+      nome: nome,
+      servico: servico,
+      data: new Date()
+    })
+    .then(() => {
+      alert("Agendamento salvo no Firebase!");
+      // Você pode continuar abrindo o WhatsApp após salvar, se quiser:
+      const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para o serviço de ${servico}.`;
+      const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, "_blank");
+      form.reset();
+    })
+    .catch((error) => {
+      alert("Erro ao salvar agendamento: " + error);
+    });
+  });
+</script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+</body>
+</html>
