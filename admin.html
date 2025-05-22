@@ -69,90 +69,114 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
 
   <script>
-    // Config Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
-      authDomain: "agendapodologia-e8d61.firebaseapp.com",
-      projectId: "agendapodologia-e8d61",
-      storageBucket: "agendapodologia-e8d61.appspot.com",
-      messagingSenderId: "1017209364452",
-      appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
+    authDomain: "agendapodologia-e8d61.firebaseapp.com",
+    projectId: "agendapodologia-e8d61",
+    storageBucket: "agendapodologia-e8d61.appspot.com",
+    messagingSenderId: "1017209364452",
+    appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
+  };
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
 
-    // Login
-    function login() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          document.getElementById('loginDiv').style.display = 'none';
-          document.getElementById('content').style.display = 'block';
-          carregarAgendamentos();
-        })
-        .catch(error => {
-          alert('Erro no login: ' + error.message);
-        });
-    }
-
-    // Logout
-    function logout() {
-      auth.signOut().then(() => {
-        document.getElementById('loginDiv').style.display = 'block';
-        document.getElementById('content').style.display = 'none';
-      });
-    }
-
-    // Verificar estado da autenticação
-    auth.onAuthStateChanged(user => {
-      if (user) {
+  function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
         document.getElementById('loginDiv').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         carregarAgendamentos();
-      } else {
-        document.getElementById('loginDiv').style.display = 'block';
-        document.getElementById('content').style.display = 'none';
-      }
+      })
+      .catch(error => {
+        alert('Erro no login: ' + error.message);
+      });
+  }
+
+  function logout() {
+    auth.signOut().then(() => {
+      document.getElementById('loginDiv').style.display = 'block';
+      document.getElementById('content').style.display = 'none';
     });
+  }
 
-    // Carregar agendamentos
-    function carregarAgendamentos() {
-      const lista = document.getElementById('agendamentos');
-      lista.innerHTML = 'Carregando...';
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      document.getElementById('loginDiv').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      carregarAgendamentos();
+    } else {
+      document.getElementById('loginDiv').style.display = 'block';
+      document.getElementById('content').style.display = 'none';
+    }
+  });
 
-      db.collection('agendamentos').orderBy('data', 'desc').get()
-        .then(snapshot => {
-          if (snapshot.empty) {
-            lista.innerHTML = 'Nenhum agendamento encontrado.';
-            return;
-          }
+  function carregarAgendamentos() {
+    const lista = document.getElementById('agendamentos');
+    lista.innerHTML = 'Carregando...';
 
-          let html = '';
-          snapshot.forEach(doc => {
-            const data = doc.data();
-            let dataFormatada = data.data && data.data.toDate 
-                ? data.data.toDate().toLocaleDateString('pt-BR') 
-                : data.data;
+    db.collection('agendamentos').orderBy('data', 'desc').get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          lista.innerHTML = 'Nenhum agendamento encontrado.';
+          return;
+        }
 
-            html += `
-              <div class="agendamento">
-                <strong>Nome:</strong> ${data.nome}<br>
-                <strong>Telefone:</strong> ${data.telefone}<br>
-                <strong>Data do agendamento:</strong> ${dataFormatada}<br>
-                <strong>Horário do agendamento:</strong> ${data.horario}<br>
-              </div>
-            `;
-          });
-          lista.innerHTML = html;
-        })
-        .catch(error => {
-          lista.innerHTML = 'Erro ao carregar agendamentos: ' + error;
+        let html = '';
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const id = doc.id;
+          const confirmado = data.confirmado === true;
+
+          let dataFormatada = data.data && data.data.toDate 
+              ? data.data.toDate().toLocaleDateString('pt-BR') 
+              : data.data;
+
+          html += `
+            <div class="agendamento" style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+              <strong>Nome:</strong> ${data.nome}<br>
+              <strong>Telefone:</strong> <a href="https://wa.me/55${data.telefone.replace(/\D/g, '')}" target="_blank">${data.telefone}</a><br>
+              <strong>Data:</strong> ${dataFormatada}<br>
+              <strong>Horário:</strong> ${data.horario}<br>
+              <strong>Dor/Pus/Inchaço:</strong> ${data.dor ? 'Sim' : 'Não'}<br>
+              <strong>Diabético:</strong> ${data.diabetico ? 'Sim' : 'Não'}<br>
+              <strong>Status:</strong> ${confirmado ? '<span style="color:green">Confirmado</span>' : '<span style="color:orange">Pendente</span>'}<br><br>
+              <button onclick="confirmarAgendamento('${id}')">Confirmar</button>
+              <button onclick="excluirAgendamento('${id}')">Excluir</button>
+            </div>
+          `;
+        });
+
+        lista.innerHTML = html;
+      })
+      .catch(error => {
+        lista.innerHTML = 'Erro ao carregar agendamentos: ' + error;
+      });
+  }
+
+  function confirmarAgendamento(id) {
+    db.collection('agendamentos').doc(id).update({
+      confirmado: true
+    }).then(() => {
+      alert('Agendamento confirmado!');
+      carregarAgendamentos();
+    });
+  }
+
+  function excluirAgendamento(id) {
+    if (confirm("Tem certeza que deseja excluir este agendamento?")) {
+      db.collection('agendamentos').doc(id).delete()
+        .then(() => {
+          alert('Agendamento excluído.');
+          carregarAgendamentos();
         });
     }
-  </script>
+  }
+</script>
+
 
 </body>
 </html>
