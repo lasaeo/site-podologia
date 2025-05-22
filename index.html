@@ -33,6 +33,30 @@
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
+
+    /* BOTÃO WHATSAPP */
+    .whatsapp-button {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 3px #999;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #128c7e;
+    }
   </style>
 </head>
 <body>
@@ -53,33 +77,31 @@
     <a href="#agendamento">Agende agora</a>
   </section>
 
-  <!-- NOVA SEÇÃO SOBRE NÓS -->
-<section id="sobre" data-aos="fade-up">
-  <div class="sobre-container">
-    <div class="sobre-imagem">
-      <img src="BASE_PNG.jpg" alt="Atendimento clínico em podologia">
+  <section id="sobre" data-aos="fade-up">
+    <div class="sobre-container">
+      <div class="sobre-imagem">
+        <img src="BASE_PNG.jpg" alt="Atendimento clínico em podologia">
+      </div>
+      <div class="sobre-texto">
+        <h2>Sobre nós</h2>
+        <p>
+          Na <strong>Podologia Shopping Portal</strong>, unimos experiência clínica com cuidado humano.
+          Nossa missão é cuidar da saúde dos seus pés com profissionalismo, conforto e atenção aos detalhes.
+        </p>
+        <ul class="diferenciais">
+          <li>✔ Mais de 25 anos de experiência</li>
+          <li>✔ Atendimento especializado para pés diabéticos</li>
+          <li>✔ Profissional com formação em enfermagem</li>
+          <li>✔ Ambientes seguros, limpos e acolhedores</li>
+        </ul>
+      </div>
     </div>
-    <div class="sobre-texto">
-      <h2>Sobre nós</h2>
-      <p>
-        Na <strong>Podologia Shopping Portal</strong>, unimos experiência clínica com cuidado humano.
-        Nossa missão é cuidar da saúde dos seus pés com profissionalismo, conforto e atenção aos detalhes.
-      </p>
-      <ul class="diferenciais">
-        <li>✔ Mais de 25 anos de experiência</li>
-        <li>✔ Atendimento especializado para pés diabéticos</li>
-        <li>✔ Profissional com formação em enfermagem</li>
-        <li>✔ Ambientes seguros, limpos e acolhedores</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
+  </section>
 
   <section id="servicos" class="texto-verde" data-aos="fade-left">
     <h2>Serviços</h2>
     <ul class="descricao-servicos">
-      <li><strong>Podologia preventiva:</strong> Corte técnico de unhas, limpeza da região periungueal (retirada de excesso de pele no canto das unhas), micose de unhas (onicomicose), tratamento de calos e calosidades.</li>
+      <li><strong>Podologia preventiva:</strong> Corte técnico de unhas, limpeza da região periungueal, micose de unhas, tratamento de calos e calosidades.</li>
       <li><strong>Tratamento de unha infeccionada</strong></li>
       <li><strong>Calo e calosidade</strong></li>
       <li><strong>Laserterapia (onicomicose)</strong></li>
@@ -87,91 +109,97 @@
     </ul>
   </section>
 
- <section id="agendamento" data-aos="fade-up">
-  <h2>Agende sua consulta</h2>
- <form id="formAgendamento">
-  <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
-  <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
-  <!-- Campos novos -->
-  <label for="data">Data do Agendamento:</label>
-  <input type="date" id="data" name="data" required>
-  
-  <label for="hora">Hora do Agendamento:</label>
-  <input type="time" id="hora" name="hora" required>
+  <section id="agendamento" data-aos="fade-up">
+    <h2>Agende sua consulta</h2>
+    <form id="formAgendamento">
+      <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+      <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
 
-  <button type="submit">Agendar</button>
-</form>
+      <label for="servico">Escolha o serviço:</label>
+      <select id="servico" name="servico" required>
+        <option value="" disabled selected>Selecione um serviço</option>
+        <option>Podologia preventiva</option>
+        <option>Tratamento de unha infeccionada</option>
+        <option>Calo e calosidade</option>
+        <option>Laserterapia (onicomicose)</option>
+        <option>Atendimento para pés diabéticos</option>
+      </select>
 
-</section>
+      <label for="data">Data do Agendamento:</label>
+      <input type="date" id="data" name="data" required>
 
-<script>
-  document.getElementById("formAgendamento").addEventListener("submit", function(event) {
-    event.preventDefault();
+      <label for="hora">Hora do Agendamento:</label>
+      <input type="time" id="hora" name="hora" required>
 
-    const nome = document.getElementById("nome").value;
-    const servico = document.getElementById("servico").value;
+      <button type="submit">Agendar</button>
+    </form>
+  </section>
 
-    const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para o serviço de ${servico}.`;
-    const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
+  <!-- BOTÃO WHATSAPP FIXO -->
+  <a href="https://wa.me/5511958368306?text=Olá,%20gostaria%20de%20agendar%20um%20horário!" 
+     class="whatsapp-button" target="_blank" title="Fale conosco no WhatsApp">
+    📱
+  </a>
 
-    window.open(url, "_blank");
-  });
-</script>
+  <!-- SCRIPT DE AGENDAMENTO -->
+  <script>
+    document.getElementById("formAgendamento").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
-<script>
-  // Configuração do Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
-    authDomain: "agendapodologia-e8d61.firebaseapp.com",
-    projectId: "agendapodologia-e8d61",
-    storageBucket: "agendapodologia-e8d61.appspot.com",
-    messagingSenderId: "1017209364452",
-    appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
-  };
+      const nome = document.getElementById("nome").value;
+      const telefone = document.getElementById("telefone").value;
+      const servico = document.getElementById("servico").value;
+      const data = document.getElementById("data").value;
+      const hora = document.getElementById("hora").value;
 
-  // Inicializa Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-
-  // Inicializa Firestore
-  const db = firebase.firestore();
-
-  // Exemplo: função para salvar agendamento no Firestore
-  const form = document.getElementById("formAgendamento");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const nome = form.nome.value;
-    const servico = form.servico.value;
-
-    db.collection("agendamentos").add({
-      nome: nome,
-      servico: servico,
-      data: new Date()
-    })
-    .then(() => {
-      alert("Agendamento salvo no Firebase!");
-      // Você pode continuar abrindo o WhatsApp após salvar, se quiser:
-      const mensagem = `Olá! Me chamo ${nome} e gostaria de agendar um horário para o serviço de ${servico}.`;
+      const mensagem = `Olá! Me chamo ${nome}, telefone ${telefone}. Gostaria de agendar o serviço de ${servico} para o dia ${data} às ${hora}.`;
       const url = `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, "_blank");
-      form.reset();
-    })
-    .catch((error) => {
-      alert("Erro ao salvar agendamento: " + error);
-    });
-  });
-</script>
 
-<!-- AOS JS -->
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000,
-    once: true
-  });
-</script>
+      window.open(url, "_blank");
+
+      // Salvar no Firebase
+      db.collection("agendamentos").add({
+        nome: nome,
+        telefone: telefone,
+        servico: servico,
+        data: data,
+        hora: hora,
+        timestamp: new Date()
+      })
+      .then(() => {
+        alert("Agendamento salvo com sucesso!");
+        document.getElementById("formAgendamento").reset();
+      })
+      .catch((error) => {
+        alert("Erro ao salvar agendamento: " + error);
+      });
+    });
+  </script>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
+      authDomain: "agendapodologia-e8d61.firebaseapp.com",
+      projectId: "agendapodologia-e8d61",
+      storageBucket: "agendapodologia-e8d61.appspot.com",
+      messagingSenderId: "1017209364452",
+      appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>
