@@ -191,15 +191,25 @@
 
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-  </script>
+ <script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
 
-  <!-- AOS JS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-  </script>
+<!-- Botão WhatsApp -->
+<a 
+  href="https://wa.me/5511958368306?text=Olá,%20gostaria%20de%20agendar%20um%20horário!" 
+  class="whatsapp-button" 
+  target="_blank" 
+  title="Fale conosco no WhatsApp">
+  <img 
+    src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
+    alt="WhatsApp" 
+    style="width:60px; position:fixed; bottom:20px; right:20px; z-index:1000;">
+</a>
+
 </body>
 </html>
+
