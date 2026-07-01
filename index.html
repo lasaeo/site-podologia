@@ -233,8 +233,12 @@ Horário: ${hora}`;
         const url =
 `https://wa.me/5511958368306?text=${encodeURIComponent(mensagem)}`;
 
-        window.open(url, "_blank");
-
+alert(
+"Solicitação enviada com sucesso!\n\n" +
+"Nossa equipe verificará a disponibilidade " +
+"do horário solicitado e entrará em contato " +
+"pelo telefone informado."
+);
         alert("Agendamento enviado com sucesso!");
 
         form.reset();
