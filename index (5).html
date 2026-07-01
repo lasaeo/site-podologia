@@ -12,34 +12,33 @@
           href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
     <style>
-        .sobre-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 40px;
-            justify-content: space-between;
+        .sobre-container{
+            display:flex;
+            flex-wrap:wrap;
+            align-items:center;
+            justify-content:space-between;
+            gap:40px;
         }
 
-        .sobre-texto {
-            flex: 1;
-            min-width: 300px;
+        .sobre-texto{
+            flex:1;
+            min-width:300px;
         }
 
-        .sobre-imagem {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
+        .sobre-imagem{
+            flex:1;
+            min-width:300px;
+            text-align:center;
         }
 
-        .sobre-imagem img {
-            width: 100%;
-            max-width: 450px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .sobre-imagem img{
+            max-width:100%;
+            border-radius:12px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .diferenciais li {
-            margin-bottom: 10px;
+        .diferenciais li{
+            margin-bottom:10px;
         }
     </style>
 </head>
@@ -60,14 +59,8 @@
 
 <section class="banner" data-aos="fade-in">
     <h2>Cuide da saúde dos seus pés</h2>
-
-    <p>
-        Mais de 25 anos de experiência em podologia
-    </p>
-
-    <a href="#agendamento">
-        Agende agora
-    </a>
+    <p>Mais de 25 anos de experiência em podologia</p>
+    <a href="#agendamento">Agende agora</a>
 </section>
 
 <section id="sobre" data-aos="fade-up">
@@ -75,12 +68,10 @@
     <div class="sobre-container">
 
         <div class="sobre-imagem">
-            <img src="BASE_PNG.jpg"
-                 alt="Atendimento clínico em podologia">
+            <img src="BASE_PNG.jpg" alt="Atendimento clínico em podologia">
         </div>
 
         <div class="sobre-texto">
-
             <h2>Sobre nós</h2>
 
             <p>
@@ -96,35 +87,22 @@
                 <li>✔ Profissional com formação em enfermagem</li>
                 <li>✔ Ambiente seguro, limpo e acolhedor</li>
             </ul>
-
         </div>
 
     </div>
 
 </section>
 
-<section id="servicos"
-         class="texto-verde"
-         data-aos="fade-left">
+<section id="servicos" data-aos="fade-left">
 
     <h2>Serviços</h2>
 
     <ul class="descricao-servicos">
-
-        <li>
-            <strong>Podologia preventiva:</strong>
-            corte técnico das unhas, limpeza periungueal,
-            tratamento de micoses e calosidades.
-        </li>
-
+        <li>Podologia preventiva</li>
         <li>Tratamento de unha infeccionada</li>
-
         <li>Calo e calosidade</li>
-
         <li>Laserterapia para onicomicose</li>
-
         <li>Atendimento para pés diabéticos</li>
-
     </ul>
 
 </section>
@@ -151,61 +129,39 @@
             required
         >
 
-        <label for="servico">
-            Serviço:
-        </label>
-
         <select
             id="servico"
             name="servico"
             required
         >
-            <option value="">
-                Selecione um serviço
+            <option value="">Selecione um serviço</option>
+
+            <option value="Podologia preventiva">
+                Podologia preventiva
             </option>
 
-            <option value="Podologia Preventiva">
-                Podologia Preventiva
+            <option value="Tratamento de unha infeccionada">
+                Tratamento de unha infeccionada
             </option>
 
-            <option value="Unha Infeccionada">
-                Tratamento de Unha Infeccionada
-            </option>
-
-            <option value="Calo e Calosidade">
-                Calo e Calosidade
+            <option value="Calo e calosidade">
+                Calo e calosidade
             </option>
 
             <option value="Laserterapia">
                 Laserterapia
             </option>
 
-            <option value="Pé Diabético">
-                Atendimento para Pé Diabético
+            <option value="Atendimento para pés diabéticos">
+                Atendimento para pés diabéticos
             </option>
         </select>
 
-        <label for="data">
-            Data do agendamento:
-        </label>
+        <label>Data do agendamento</label>
+        <input type="date" id="data" name="data" required>
 
-        <input
-            type="date"
-            id="data"
-            name="data"
-            required
-        >
-
-        <label for="hora">
-            Horário desejado:
-        </label>
-
-        <input
-            type="time"
-            id="hora"
-            name="hora"
-            required
-        >
+        <label>Horário desejado</label>
+        <input type="time" id="hora" name="hora" required>
 
         <button type="submit">
             Agendar
@@ -215,19 +171,19 @@
 
 </section>
 
-<!-- Firebase v8 -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script>
 
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "SEU_PROJETO.firebaseapp.com",
-    projectId: "SEU_PROJETO",
-    storageBucket: "SEU_PROJETO.appspot.com",
-    messagingSenderId: "SEU_ID",
-    appId: "SEU_APP_ID"
+    apiKey: "AIzaSyChjxJlRFeDQX2aVdFTAlVU0wTl6lCb9oU",
+    authDomain: "agendapodologia-e8d61.firebaseapp.com",
+    projectId: "agendapodologia-e8d61",
+    storageBucket: "agendapodologia-e8d61.appspot.com",
+    messagingSenderId: "1017209364452",
+    appId: "1:1017209364452:web:159b5d91b4e2736d4171f1"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -240,21 +196,19 @@ form.addEventListener("submit", function(e){
 
     e.preventDefault();
 
-    const nome = form.nome.value;
-    const telefone = form.telefone.value;
-    const servico = form.servico.value;
-    const data = form.data.value;
-    const hora = form.hora.value;
+    const nome = document.getElementById("nome").value;
+    const telefone = document.getElementById("telefone").value;
+    const servico = document.getElementById("servico").value;
+    const data = document.getElementById("data").value;
+    const hora = document.getElementById("hora").value;
 
     db.collection("agendamentos").add({
-
         nome: nome,
         telefone: telefone,
         servico: servico,
         dataAgendamento: data,
         horaAgendamento: hora,
         criadoEm: new Date()
-
     })
 
     .then(() => {
@@ -278,15 +232,11 @@ Horário: ${hora}`;
         alert("Agendamento enviado com sucesso!");
 
         form.reset();
-
     })
 
     .catch((erro) => {
-
         console.error(erro);
-
         alert("Erro ao salvar o agendamento.");
-
     });
 
 });
@@ -298,8 +248,8 @@ Horário: ${hora}`;
 
 <script>
 AOS.init({
-    duration: 1000,
-    once: true
+    duration:1000,
+    once:true
 });
 </script>
 
